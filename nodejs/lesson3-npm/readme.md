@@ -37,7 +37,7 @@ For more information about NPM Install I recommend reading the help documentatio
 npm help install
 ```
 
-`npm install` has another usage as well, and that is in a project that has a lot of dependencies and you want to install of the dependencies of that project.  Type: `npm install` no flags or anything else.  It will locate the `package.json` file and use it to install the specified modules for your project.  We will see how that works shortly.
+`npm install` has another usage as well, and that is in a project that has a lot of dependencies and you want to install all of the dependencies of that project.  Type: `npm install` no flags or anything else.  It will locate the `package.json` file and use it to install the specified modules for your project.  We will see how that works shortly.
 
 Another feature of NPM is the rebuild command, this command will rebuild any native extensions that any of your project modules may have.  A good example of this is socket.io, which provides real time communications between the browser and the server.  When you move a project from one machine to another, you want to rebuild those bindings on that machine vs using the bindings from another.
 
@@ -70,4 +70,4 @@ Install the `coffee-script` module as a global then do an `npm list` and put the
 
 Create a new project directory called "Foo", and `cd` into that directory.  Then run an `npm init` and fill in the blanks as best you can, and add that to your project.
 
-Check both exercises and submit a pull request.
+Check in both exercises and submit a pull request.
