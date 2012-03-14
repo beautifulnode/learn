@@ -2,7 +2,6 @@
 
 - bootstrap or not
 - Cakefiles
-- docco
 
 CoffeeScript is a transpiler language that provides some syntax
 sugar for JavaScript.  Odds are, if you are going through this lesson,
@@ -47,11 +46,35 @@ node example.js
 
 ## Cake
 
-Cake is a make utility that comes with coffeescript.  Like make and
-rake, it is a dsl that exists in a Cakefile.  This dsl allows you to
-create tasks that can perform routines that make your project mgmt
-easier.
+Cake is a make utility that comes with coffeescript.  Like `make` and
+`rake`, it is a command line application that looks in the current working directory for a `Cakefile`.  When a Cakefile exists, then in evaluates this file to convert all defined task methods into command line options.
 
 
-Now, we can run
+In your project directory, simply create a file called Cakefile and inside that file you can create methods that can be invoked via the 'cake' command.  The dsl to define the tasks is the following:
+
+``` coffeescript
+task 'cmd', 'description', -> code
+```
+
+For example, to write 'Hello World' to the console in a cake task, it
+would look like this.
+
+``` coffeescript
+task 'hw', 'print hello world', -> console.log 'hello world'
+```
+
+Save the file as `Cakefile`
+
+Then in a console run
+
+``` coffeescript
+cake hw
+```
+#> hello world
+
+
+## Exercise
+
+Create a Cakefile in this folder and add a task, use the fs.writeFileSync command to create simple text file in this folder called answer.txt.  Then run the cake command to generate that file and check in your code and do a pull request.
+
 
