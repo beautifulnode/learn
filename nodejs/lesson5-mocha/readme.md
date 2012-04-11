@@ -89,6 +89,29 @@ describe 'my web app', ->
 
 ```
 
+## Exercise
+
+Create a small node project and your first test.  The node project should output hello world via stdout.  The test should confirm this happens.
+
+### app.coffee
+
+``` coffeescript
+console.log 'hello world'
+```
+
+### test/app.coffee
+
+``` coffeescript
+describe 'hello world', ->
+  output = ""
+  before (done) ->
+    process.stdout.on 'data', (data) ->
+      output += data.toString()
+      done()
+  it 'should output hello world', ->
+    require '../app'
+    output.should.equal 'hello world'
+```
 # Additional Info
 
 ## Setting up mocha in npm package
