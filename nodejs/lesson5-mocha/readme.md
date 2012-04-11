@@ -29,11 +29,18 @@ mkdir test
 
 ## creating a mocha opts file
 
-We are using an additional test library called should and we want mocha to require this module on every test module.  We could declare it in every file or we can add a mocha.opts file in the test directory.  This mocha.opts file allows you to specify other options as well, but for now we just want to require the should module.
+We are using an additional test library called should and we want mocha to require this module on every test module.  We could declare it in every file or we can add a mocha.opts file in the test directory.  This mocha.opts file allows you to specify other options as well.
 
 ```
 echo '--require should' >> test/mocha.opts
+echo '--colors' >> test/mocha.opts
+echo '--compilers coffee:coffee-script' >> test/mocha.opts
 ```
+
+hint: With the release of Mocha 1.0.0, you now need to specify
+coffee-script as a compiler in your options file or command line.
+
+---
 
 Lets create our first mocha test file.  In TDD, we write the tests before we write the app code.  We will be using the behavior dsl.
 
@@ -51,6 +58,38 @@ describe 'hello#foo', ->
 ```
 mocha
 ```
+
+Too see all the features of mocha go to:
+
+[http://visionmedia.github.com/mocha/](http://visionmedia.github.com/mocha/)
+
+Testing is just plain hard, but there are some good patterns to follow.  Using the before, beforeEach, can make your tests clean and readable.
+
+``` coffeescript
+
+request = require 'request'
+
+describe 'my web app', ->
+  describe 'GET /', ->
+    result = ""
+    code = 0
+    contentType = ''
+    before = (done) ->
+      request 'http://localhost:3000/', (e, r, b) ->
+        result = body
+        code = r.statusCode
+        contentType = r.headers['content-type']
+        done()
+    it 'should return code 200', ->
+      code.should.equal 200
+    it 'should return contentType of `text/html`', ->
+      contentType.should.equal 'text/html'
+    it 'should return content `hello world`', ->
+      result.should.match(/hello world/)
+
+```
+
+# Additional Info
 
 ## Setting up mocha in npm package
 
