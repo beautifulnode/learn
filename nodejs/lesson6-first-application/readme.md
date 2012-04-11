@@ -35,7 +35,7 @@ server.listen 8000
 
 /test/app-test.coffee
 
-``` coffeescript`
+``` coffeescript
 request = require 'request'
 describe 'app', ->
   describe 'GET /', ->
